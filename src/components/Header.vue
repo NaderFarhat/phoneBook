@@ -111,6 +111,7 @@ body {
   right: 24px;
   margin-right: 8px;
   padding: 24px 0 0 0 !important;
+  cursor: pointer;
 }
 
 .input-icons {
@@ -145,13 +146,19 @@ body {
 }
 
 .busca_field {
-  width: 1436px;
+  width: 1420px;
   max-height: 32px;
   margin: 16px 0 0 24px;
   padding: 7px 8px 6px;
   border-radius: 4px;
   background-color: #e4e7f4;
   border-color: transparent;
+}
+
+@media (max-width: 1440px) {
+  .busca_field {
+    width: 972px;
+  }
 }
 
 .nav {

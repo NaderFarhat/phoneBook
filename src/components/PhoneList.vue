@@ -8,11 +8,15 @@
     <span class="container_list">
       <div
         id="phone"
-        v-for="phone in listContact"
+        v-for="(phone, index) in listContact"
         v-bind:key="phone.id"
         :class="[phone.last === true ? 'new_item' : 'item_list']"
       >
-        <div id="circle" class="col_circle circle" :style="cssVars">
+        <div
+          id="circle"
+          class="col_circle circle"
+          :style="{ backgroundColor: getColor(index) }"
+        >
           {{ getLetter(phone) }}
         </div>
         <div id="name" class="name item_name">{{ phone.name }}</div>
@@ -27,7 +31,7 @@
               class="edit-button"
               alt="pic"
               id="img"
-              v-on:click="showModalEditFunc"
+              v-on:click="showModalEditFunc(phone.id)"
             />
           </div>
           <div class="col_none">
@@ -36,24 +40,24 @@
               class="edit-button"
               alt="pic"
               id="img"
-              v-on:click="showModalDeleteFunc"
+              v-on:click="showModalDeleteFunc(phone.id)"
             />
           </div>
         </span>
         <ModalDelete
-          v-show="showModalDelete"
+          v-show="selectedIdDelete === phone.id"
           @close="closeModalDeleteFunc"
-          v-bind:key="key"
+          v-bind:key="phone.id"
           :listContact="listContact"
-          :phoneId="phone.id"
+          :phoneId="index"
         >
         </ModalDelete>
         <ModalEdit
-          v-show="showModalEdit"
+          v-show="selectedId === phone.id"
           @close="closeModalEditFunc"
-          v-bind:key="key"
+          v-bind:key="phone.id"
           :listContact="listContact"
-          :phoneId="phone.id"
+          :phoneId="index"
         >
         </ModalEdit>
       </div>
@@ -72,14 +76,10 @@ export default {
     return {
       showModalDelete: false,
       showModalEdit: false,
+      selectedId: -1,
+      selectedIdDelete: -1,
+      colorCache: {},
     };
-  },
-  computed: {
-    cssVars() {
-      return {
-        "background-color": this.getColor(),
-      };
-    },
   },
   methods: {
     delete() {
@@ -95,24 +95,28 @@ export default {
       this.listContact = teste;
       this.$emit("close");
     },
-    showModalDeleteFunc() {
-      this.showModalDelete = true;
+    showModalDeleteFunc(value) {
+      this.selectedIdDelete = value;
     },
     closeModalDeleteFunc() {
-      this.showModalDelete = false;
+      this.selectedIdDelete = -1;
     },
-    showModalEditFunc() {
-      this.showModalEdit = true;
+    showModalEditFunc(value) {
+      this.selectedId = value;
     },
     closeModalEditFunc() {
-      this.showModalEdit = false;
+      this.selectedId = -1;
     },
-    getColor() {
-      let n = (Math.random() * 0xfffff * 1000000).toString(16);
-      return "#" + n.slice(0, 6);
+    getColor(idPhone) {
+      const r = () => Math.floor(256 * Math.random());
+
+      return (this.colorCache[idPhone] = `rgb(${r()}, ${r()}, ${r()})`);
     },
     getLetter(phone) {
-      return phone.name.charAt(0);
+      return phone.name.charAt(0).toLowerCase();
+    },
+    onClick(number) {
+      this.idToEdit = number;
     },
   },
   components: {
@@ -127,7 +131,6 @@ export default {
   width: 100%;
   height: 40px;
   margin: 16px 0px 1px 0px;
-  /* padding: 16px 0px 9px 8px; */
   border-radius: 4px;
   border: solid 1px #e1e1e1;
   background-color: #fff;
@@ -170,7 +173,7 @@ export default {
 }
 
 .item_header-phone-list {
-  margin-left: 355px;
+  margin-left: 215px;
 }
 
 .edit-button {
@@ -256,6 +259,6 @@ export default {
   justify-content: left;
   align-self: center;
   flex-wrap: wrap;
-  max-width: 300px;
+  min-width: 300px;
 }
 </style>

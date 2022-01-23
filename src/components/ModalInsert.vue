@@ -142,7 +142,7 @@ export default {
 .modal-header {
   position: relative;
   border-bottom: 1px solid #eeeeee;
-  color: #4aae9b;
+  color: #2a2d3b !important;
   justify-content: space-between;
 }
 
@@ -185,16 +185,24 @@ export default {
 }
 
 .btn-close {
-  position: absolute;
+  position: relative !important;
+  width: 80px !important;
   top: 0;
   right: 0;
-  border: none;
-  font-size: 20px;
-  padding: 10px;
+  background-color: transparent;
+  font-family: Roboto;
+  font-size: 16px;
+  padding: 0px !important;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  box-shadow: none;
+  margin: 0px 0px 0 60px !important;
+  color: #fa7268 !important;
   cursor: pointer;
-  font-weight: bold;
-  color: #4aae9b;
-  background: transparent;
 }
 
 .btn-green {

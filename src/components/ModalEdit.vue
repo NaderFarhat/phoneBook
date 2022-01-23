@@ -6,30 +6,59 @@ export default {
   data() {
     return {
       id: this.phoneId,
-      name: this.listContact.find((x) => x.id === this.phoneId).name,
-      email: this.listContact.find((x) => x.id === this.phoneId).email,
-      phone: this.listContact.find((x) => x.id === this.phoneId).phone,
+      name: this.listContact.find((x) => x.id - 1 === this.phoneId).name,
+      email: this.listContact.find((x) => x.id - 1 === this.phoneId).email,
+      phone: this.listContact.find((x) => x.id - 1 === this.phoneId).phone,
     };
   },
   methods: {
     close() {
+      this.phoneId = -1;
       this.$emit("close");
     },
     sendData() {
+      console.log("phoneiD", this.phoneId);
       let index = this.listContact
         .map((x) => {
           return x.id;
         })
         .indexOf(this.id);
-      this.listContact.splice(index, 1);
-      let teste = this.listContact.push({
-        id: this.phoneId,
+      console.log("index", index);
+
+      // this.listContact.splice(index - 1, 1);
+      // this.listContact.sort(function (a, b) {
+      //   return a.id - b.id;
+      // });
+      // let newArray = this.listContact.push({
+      //   id: this.phoneId,
+      //   name: this.name,
+      //   email: this.email,
+      //   phone: this.phone,
+      //   last: false,
+      // });
+
+      // let newArray = this.listContact.map((item) => {
+      //   return {
+      //     ...item,
+      //     id: this.phoneId,
+      //     name: this.name,
+      //     email: this.email,
+      //     phone: this.phone,
+      //     last: false,
+      //   };
+      // });
+
+      let newArray = (this.listContact[index + 1] = {
+        id: this.phoneId + 1,
         name: this.name,
         email: this.email,
         phone: this.phone,
         last: false,
       });
-      this.listContact = teste;
+
+      console.log(" this.listContact", this.listContact);
+
+      this.listContact = newArray;
 
       this.$emit("close");
     },
@@ -179,16 +208,24 @@ export default {
 }
 
 .btn-close {
-  position: absolute;
+  position: relative !important;
+  width: 80px !important;
   top: 0;
   right: 0;
-  border: none;
-  font-size: 20px;
-  padding: 10px;
+  background-color: transparent;
+  font-family: Roboto;
+  font-size: 16px;
+  padding: 0px !important;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  box-shadow: none;
+  margin: 0px 0px 0 60px !important;
+  color: #fa7268 !important;
   cursor: pointer;
-  font-weight: bold;
-  color: #4aae9b;
-  background: transparent;
 }
 
 .btn-green {

@@ -13,11 +13,14 @@ export default {
   },
   methods: {
     close() {
+      this.phoneId = -1;
       this.$emit("close");
     },
     sendData() {
+      console.log("this.phoneId", this.phoneId + 1);
+      this.$emit("close");
       let newList = this.listContact;
-      newList.splice(this.phoneId - 1, 1);
+      newList.splice(this.phoneId, 1);
       this.listContact = newList;
       this.$emit("close");
     },
