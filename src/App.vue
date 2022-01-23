@@ -1,11 +1,15 @@
 <template>
   <div id="app">
-    <Header v-bind:listContact="listContact" @showModal="showModal" />
+    <Header
+      :listContact="filteredList"
+      @showModal="showModal"
+      @changeTitle="ChangeT($event)"
+    />
     <div v-if="listContact.length === 0">
-      <EmptyList v-bind:listContact="listContact" @showModal="showModal" />
+      <EmptyList v-bind:listContact="filteredList" @showModal="showModal" />
     </div>
     <div v-else>
-      <PhoneList v-bind:listContact="listContact" />
+      <PhoneList :listContact="filteredList" />
     </div>
 
     <ModalInsert
@@ -13,11 +17,6 @@
       @close="closeModal"
       v-bind:listContact="listContact"
     >
-      <template v-slot:header> This is a new modal header. </template>
-
-      <template v-slot:body> This is a new modal body. </template>
-
-      <template v-slot:footer> This is a new modal footer. </template>
     </ModalInsert>
   </div>
 </template>
@@ -39,10 +38,18 @@ export default {
         phone: "",
       },
       listContact: [],
+      filteredList: [],
       showModalInsert: false,
       showModalDelete: false,
+      search: "",
     };
   },
+  watch: {
+    listContact: function () {
+      this.filteredList = this.listContact;
+    },
+  },
+  computed: {},
   methods: {
     showModal() {
       this.showModalInsert = true;
@@ -50,11 +57,24 @@ export default {
     closeModal() {
       this.showModalInsert = false;
     },
-    showModalDeleteFunc() {
-      this.showModalDelete = true;
-    },
-    closeModalDeleteFunc() {
-      this.showModalDelete = false;
+    ChangeT(title) {
+      this.search = title;
+      let newArray = this.listContact;
+      if (this.search) {
+        newArray = this.listContact.filter((item) => {
+          return this.search
+            .toLowerCase()
+            .split(" ")
+            .every(
+              (v) =>
+                item.name.toLowerCase().includes(v) ||
+                item.email.toLowerCase().includes(v)
+            );
+        });
+      } else {
+        newArray = this.listContact;
+      }
+      this.filteredList = newArray;
     },
   },
   components: {

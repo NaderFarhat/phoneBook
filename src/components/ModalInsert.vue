@@ -29,12 +29,6 @@ export default {
       this.$emit("close");
     },
     sendData() {
-      console.log(
-        "aaa",
-        this.listContact.map((item) => {
-          item.last = false;
-        })
-      );
       let teste = this.listContact.push({
         id: this.listContact.length + 1,
         name: this.name,

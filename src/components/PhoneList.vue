@@ -127,7 +127,7 @@ export default {
   width: 100%;
   height: 40px;
   margin: 16px 0px 1px 0px;
-  padding: 16px 0px 9px 8px;
+  /* padding: 16px 0px 9px 8px; */
   border-radius: 4px;
   border: solid 1px #e1e1e1;
   background-color: #fff;
@@ -186,7 +186,7 @@ export default {
 .item_list {
   width: 100%;
   margin: 0px 0px 1px 0px;
-  padding: 8px 0px 8px 8px;
+  padding: 8px 0px 8px 0px;
   border-radius: 4px;
   border: solid 1px #e1e1e1;
   background-color: #ffffff;
@@ -200,7 +200,7 @@ export default {
 .new_item {
   width: 100%;
   margin: 0px 0px 1px 0px;
-  padding: 8px 0px 8px 8px;
+  padding: 8px 0px 8px 0px;
   border-radius: 4px;
   border: solid 1px #e1e1e1;
   background-color: #ffffff;
@@ -219,6 +219,10 @@ export default {
 }
 
 .item_list:hover {
+  background-color: #fff3f2;
+}
+
+.new_item:hover {
   background-color: #fff3f2;
 }
 
@@ -244,11 +248,14 @@ export default {
 .col_circle {
   width: 25px;
   margin-right: 16px;
+  margin-left: 8px;
 }
 
 .name {
   display: flex;
   justify-content: left;
   align-self: center;
+  flex-wrap: wrap;
+  max-width: 300px;
 }
 </style>

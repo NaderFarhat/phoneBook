@@ -19,12 +19,14 @@
         alt="pic"
         id="img"
         class="search-button"
+        type="button"
+        @click="update"
       />
       <input
-        v-model="message"
         class="busca_field"
         placeholder="Buscar..."
         type="text"
+        v-model="filter"
       />
     </div>
   </div>
@@ -32,15 +34,26 @@
 <script>
 export default {
   props: ["listContact", "showModal"],
-  created: function () {
-    // `this` aponta para a instância
-    console.log("listContact", this.listContact);
+  data() {
+    return {
+      filter: "",
+      filteredList: this.listContact,
+    };
+  },
+  computed: {
+    filteredPhones() {
+      if (this.filter !== "") {
+        return this.filteredList.filter((phone) => {
+          return phone.name.toLowerCase().includes(this.filter.toLowerCase());
+        });
+      }
+
+      return this.filteredList;
+    },
   },
   methods: {
-    logTeste: function () {
-      let teste = this.listContact.push({ name: "teste" });
-      this.listContact = teste;
-      this.showModal;
+    update: function () {
+      this.$emit("changeTitle", this.filter);
     },
   },
 };

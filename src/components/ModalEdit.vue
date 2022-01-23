@@ -2,13 +2,7 @@
 export default {
   name: "ModalInsert",
   props: ["listContact", "phoneId"],
-  mounted() {
-    console.log(
-      "listContact",
-      this.listContact.find((x) => x.id === this.phoneId).name
-    );
-    console.log("phoneId", this.phoneId);
-  },
+
   data() {
     return {
       id: this.phoneId,
@@ -36,6 +30,7 @@ export default {
         last: false,
       });
       this.listContact = teste;
+
       this.$emit("close");
     },
   },
