@@ -136,12 +136,12 @@ export default {
 .modal-footer {
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .modal-header {
   position: relative;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 2px solid #eeeeee;
   color: #2a2d3b !important;
   justify-content: space-between;
 }
@@ -152,7 +152,7 @@ export default {
 }
 
 .modal-footer {
-  border-top: 1px solid #eeeeee;
+  border-top: 2px solid #eeeeee;
   display: flex;
   flex-direction: row;
 }
@@ -200,7 +200,7 @@ export default {
   letter-spacing: normal;
   text-align: center;
   box-shadow: none;
-  margin: 0px 0px 0 60px !important;
+  margin: 0px 16px 0 60px !important;
   color: #fa7268 !important;
   cursor: pointer;
 }
@@ -216,7 +216,6 @@ button:disabled,
 button[disabled] {
   width: 72px;
   height: 32px;
-  margin: 0px 16px 0;
   padding: 8px 16px;
   opacity: 0.32;
   border-radius: 16px;

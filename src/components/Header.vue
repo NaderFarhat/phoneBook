@@ -109,7 +109,7 @@ body {
   height: 16px;
   width: 16px;
   right: 24px;
-  margin-right: 8px;
+  margin-right: 16px;
   padding: 24px 0 0 0 !important;
   cursor: pointer;
 }
@@ -146,7 +146,7 @@ body {
 }
 
 .busca_field {
-  width: 1420px;
+  width: calc(100vw - 485px);
   max-height: 32px;
   margin: 16px 0 0 24px;
   padding: 7px 8px 6px;
@@ -155,11 +155,11 @@ body {
   border-color: transparent;
 }
 
-@media (max-width: 1440px) {
+/* @media (max-width: 1440px) {
   .busca_field {
     width: 972px;
   }
-}
+} */
 
 .nav {
   background-color: #f8f9fd;

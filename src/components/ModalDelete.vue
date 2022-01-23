@@ -17,7 +17,6 @@ export default {
       this.$emit("close");
     },
     sendData() {
-      console.log("this.phoneId", this.phoneId + 1);
       this.$emit("close");
       let newList = this.listContact;
       newList.splice(this.phoneId, 1);
@@ -135,7 +134,7 @@ export default {
 }
 
 .modal-footer {
-  border-top: 1px solid #c0c3d2;
+  border-top: 2px solid #c0c3d2;
   flex-direction: column;
 }
 
@@ -160,7 +159,7 @@ export default {
   letter-spacing: normal;
   text-align: center;
   box-shadow: none;
-  margin: 0px 0px 0 60px !important;
+  margin: 0px 16px 0 60px !important;
   color: #fa7268 !important;
   cursor: pointer;
 }

@@ -131,6 +131,7 @@ export default {
   width: 100%;
   height: 40px;
   margin: 16px 0px 1px 0px;
+  padding: 16px 0 9px 0;
   border-radius: 4px;
   border: solid 1px #e1e1e1;
   background-color: #fff;
@@ -143,6 +144,11 @@ export default {
   justify-content: left;
   align-items: center;
   min-width: 300px;
+}
+
+.col_none {
+  display: flex;
+  align-self: center;
 }
 
 .title_header-none-image {
@@ -189,7 +195,7 @@ export default {
 .item_list {
   width: 100%;
   margin: 0px 0px 1px 0px;
-  padding: 8px 0px 8px 0px;
+  padding: 12px 0px 12px 0px;
   border-radius: 4px;
   border: solid 1px #e1e1e1;
   background-color: #ffffff;
@@ -203,7 +209,7 @@ export default {
 .new_item {
   width: 100%;
   margin: 0px 0px 1px 0px;
-  padding: 8px 0px 8px 0px;
+  padding: 12px 0px 12px 0px;
   border-radius: 4px;
   border: solid 1px #e1e1e1;
   background-color: #ffffff;
