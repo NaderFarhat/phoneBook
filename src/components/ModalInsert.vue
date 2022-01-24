@@ -72,7 +72,11 @@ export default {
           <div>
             <div class="label">Telefone</div>
             <div class="d-flex">
-              <input v-model="phone" class="text_field-phone" />
+              <input
+                v-model="phone"
+                class="text_field-phone"
+                v-mask="'+55 (##) #########'"
+              />
             </div>
           </div>
         </section>
